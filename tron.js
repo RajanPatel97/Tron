@@ -1,6 +1,32 @@
 const canvas = document.getElementById('tron');
 const context = canvas.getContext('2d');
-const unit = 15;
+const unit = 10;
+
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+
+const derezzedTrack = new sound("derezzed.mp3");
+const gameOverTrack = new sound("gameOver.mp3");
+
+function playDerezzed() {
+  derezzedTrack.play();
+}
+
+function playGameOver() {
+  gameOverTrack.play();
+}
 
 class Player {
   constructor(x, y, color) {
@@ -23,7 +49,10 @@ class Player {
 Player.allInstances = [];
 
 let p1 = new Player(unit * 6, unit * 6, '#75A4FF');
-let p2 = new Player(unit * 43, unit * 43, '#FF5050');
+let p2 = new Player(unit * 69, unit * 69, '#FF5050');
+let p3 = new Player(unit * 6, unit * 69, '#FFE64D');
+let p4 = new Player(unit * 69, unit * 6, '#00FF00');
+
 
 function setKey(key, player, up, right, down, left) {
   switch (key) {
@@ -61,8 +90,8 @@ function handleKeyPress(event) {
 
   setKey(key, p1, 38, 39, 40, 37); // arrow keys
   setKey(key, p2, 87, 68, 83, 65); // WASD
-  // setKey(key, p3, 73, 76, 75, 74); // IJKL
-  // setKey(key, p4, 104, 102, 101, 100); // numpad 8456
+  setKey(key, p3, 73, 76, 75, 74); // IJKL
+  setKey(key, p4, 104, 102, 101, 100); // numpad 8456
 };
 
 document.addEventListener('keydown', handleKeyPress);
@@ -80,7 +109,7 @@ function getPlayableCells(canvas, unit) {
 let playableCells = getPlayableCells(canvas, unit);
 
 function drawBackground() {
-  context.strokeStyle = '#001900';
+  context.strokeStyle = '#000000';
   for (let i = 0; i <= canvas.width / unit + 2; i += 2) {
     for (let j = 0; j <= canvas.height / unit + 2; j += 2) {
       context.strokeRect(0, 0, unit * i, unit * j);
@@ -124,6 +153,7 @@ function draw() {
     }
 
     if (outcome) {
+      playGameOver();
       createResultsScreen(winnerColor);
       clearInterval(game);
     };
@@ -140,6 +170,7 @@ function draw() {
         context.strokeRect(p.x, p.y, unit, unit);
 
         if (!playableCells.has(`${p.x}x${p.y}y`) && p.dead === false) {
+          playDerezzed();
           p.dead = true;
           p.direction = '';
           playerCount -= 1;
