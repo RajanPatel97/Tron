@@ -3,8 +3,8 @@ const context = canvas.getContext('2d');
 const unit = 10;
 
 
-const derezzedTrack = new Audio('src/assets/sounds/derezzed.mp3');
-const gameOverTrack = new Audio('src/assets/sounds/gameOver.mp3');
+const derezzedTrack = new Audio('assets/sounds/derezzed.mp3');
+const gameOverTrack = new Audio('assets/sounds/gameOver.mp3');
 
 
 function playDerezzed() {
