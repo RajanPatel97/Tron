@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'MyWebFont';
-  src: url('tron.ttf') format('truetype'), /* Safari, Android, iOS */
+  src: url(assets/fonts/tron.TTF) format('truetype'), /* Safari, Android, iOS */
 }
 
 body {
   background: rgb(172, 170, 170);
-  background-image: url('tronBackground.jpg');
+  background-image: url('src/assets/imgs/tronBackground.jpg');
   text-align: center;
   font-family: 'MyWebFont', Fallback, 'Bungee', cursive;
 }
