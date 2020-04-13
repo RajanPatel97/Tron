@@ -1,2 +1,2 @@
-# Tron
-A JavaScript implementation of the classic Tron arcade game 
+# TronJS
+A Browser Playable Version of the Classic Tron Arcade Game 
