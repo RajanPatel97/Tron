@@ -37,8 +37,8 @@ Player.allInstances = [];
 
 let p1 = new Player(unit * 6, unit * 6, '#75A4FF');
 let p2 = new Player(unit * 69, unit * 69, '#FF5050');
-let p3 = new Player(unit * 6, unit * 69, '#FFE64D');
-let p4 = new Player(unit * 69, unit * 6, '#00FF00');
+//let p3 = new Player(unit * 6, unit * 69, '#FFE64D');
+//let p4 = new Player(unit * 69, unit * 6, '#00FF00');
 
 
 function setKey(key, player, up, right, down, left) {
@@ -77,8 +77,8 @@ function handleKeyPress(event) {
 
   setKey(key, p1, 38, 39, 40, 37); // arrow keys
   setKey(key, p2, 87, 68, 83, 65); // WASD
-  setKey(key, p3, 73, 76, 75, 74); // IJKL
-  setKey(key, p4, 104, 102, 101, 100); // numpad 8456
+  //setKey(key, p3, 73, 76, 75, 74); // IJKL
+  //setKey(key, p4, 104, 102, 101, 100); // numpad 8456
 };
 
 document.addEventListener('keydown', handleKeyPress);
